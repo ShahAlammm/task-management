@@ -5,6 +5,9 @@ import Dashboard from "../Layout/Dashboard";
 import Login from "../Page/Login";
 import SignUp from "../Page/SignUp";
 import Error from "../Page/Error";
+import Profile from "../Dashboard/Profile";
+import AllTask from "../Dashboard/AllTask";
+import AddTask from "../Dashboard/AddTask";
 
 const router = createBrowserRouter([
   {
@@ -31,7 +34,16 @@ const router = createBrowserRouter([
     element: <Dashboard />,
     children: [
       {
-        path: "users",
+        path: "profile",
+        element: <Profile />,
+      },
+      {
+        path: "allTask",
+        element: <AllTask />,
+      },
+      {
+        path: "addTask",
+        element: <AddTask />,
       },
     ],
   },

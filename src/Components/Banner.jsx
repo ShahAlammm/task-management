@@ -1,43 +1,69 @@
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+import img from "../assets/image/banner-task.jpg";
 
 const Banner = () => {
+  useEffect(() => {
+    AOS.init({
+      offset: 200,
+      duration: 600,
+      easing: "ease-in-sine",
+      delay: 100,
+    });
+    AOS.refresh();
+  }, []);
   return (
-    <div>
+    <div className="pt-20">
       <div
         className="hero min-h-[800px]"
         style={{
-          backgroundImage: "url(https://i.ibb.co/f9FDs29/bn.jpg)",
+          backgroundImage: `url(${img})`,
         }}
       >
-        <div className="hero-overlay bg-opacity-60 bg-black"></div>
-        <div className="hero-content text-center text-neutral-content">
-          <div className="hero-content flex-col lg:flex-row gap-10">
-            <div className="text-center lg:text-left space-y-6">
-              <h1 className="text-3xl lg:text-7xl font-bold ">
-                Reliable Service <br />
-                Every Time
-              </h1>
-              <p className="">
-                Nullam ac aliquam purus. Donec tempor, metus sed porttitor
-                posuere, elit sapien rutrum elit, eget tincidunt nisl tortor nec
-                metus. Donec tempor rhoncus convallis.
-              </p>
-              <div className="join">
-                <div className="">
-                  <div>
-                    <input
-                      className="input input-bordered join-item md:w-96"
-                      placeholder="Search"
-                    />
+        <div className="">
+          <div>
+            <div className="hero-content flex-col lg:flex-row-reverse gap-10 mt-24 lg:mt-16 xl:mt-0">
+              <div
+                data-aos="fade-up"
+                data-aos-duration="2000"
+                className="text-center lg:text-left space-y-6 glass p-10 rounded-2xl shadow-2xl"
+              >
+                <div className="space-y-5 z-40">
+                  <p
+                    data-aos="fade-up"
+                    data-aos-delay="600"
+                    className="text-2xl font-serif text-orange-500"
+                  >
+                    SCC Technovision Inc.
+                  </p>
+                  <h1
+                    data-aos="fade-up"
+                    data-aos-delay="1000"
+                    className="text-5xl lg:text-7xl font-semibold text-sky-500 font-serif"
+                  >
+                   Manage Your Task Here
+                  </h1>
+                  <p data-aos="fade-up" data-aos-duration="1700">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab
+                    perferendis neque ipsam sapiente. Tenetur iure velit
+                    laboriosam assumenda id a dolorum? Quidem autem minima
+                    provident atque qui dolorem magni hic.
+                  </p>
+                  <div className="flex justify-end ">
+                  <button className="btn btn-accent font-semibold">
+                    Let's Explore
+                  </button>
                   </div>
                 </div>
-                <div className="indicator">
-                  <button className="btn bg-[#26DEBE]">Search</button>
-                </div>
               </div>
-            </div>
-            <div className="card  w-full max-w-xl  ">
-              <div className="col-span-4">
-
+              <div className="card w-full max-w-xl  ">
+                <div
+                  data-aos="fade-up"
+                  data-aos-duration="2000"
+                  className="col-span-4"
+                >
+                </div>
               </div>
             </div>
           </div>

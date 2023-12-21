@@ -1,15 +1,9 @@
 import { NavLink, Outlet } from "react-router-dom";
 import {
-  FaChartPie,
-  FaClipboardCheck,
-  FaEnvelope,
+  FaClipboard,
   FaHome,
-  FaListAlt,
   FaListUl,
-  FaStar,
   FaUserAlt,
-  FaUsers,
-  FaWalking,
 } from "react-icons/fa";
 
 const DashboardLayout = () => {
@@ -19,29 +13,35 @@ const DashboardLayout = () => {
         style={{ backgroundImage: "url(https://i.ibb.co/J2q5qBj/img4.jpg)" }}
         className="w-full bg-cover"
       >
-        <h1 className="md:text-3xl pt-14 uppercase md:p-5 text-center text-black font-serif font-bold">
-          Your Activities
+        <h1 className="md:text-3xl p-14 uppercase text-center text-black font-serif font-bold">
+          My Activities
         </h1>
-        <ul className="flex flex-row justify-around  menu md:text-lg font-serif uppercase md:mt-16 ">
+        <ul className="flex flex-row justify-around  menu md:text-lg font-serif uppercase  ">
           <li className="text-black">
-            <NavLink to="/dashboard/statistics">
+            <NavLink to="/dashboard/profile">
               <FaUserAlt className="md:w-7 md:h-10"></FaUserAlt>Profile
             </NavLink>
           </li>
 
           <li className="text-black">
-            <NavLink to="/dashboard/allParcels">
+            <NavLink to="/dashboard/allTask">
               <FaListUl className="md:w-7 md:h-10"></FaListUl>All Task
             </NavLink>
           </li>
           <li className="text-black">
-            <NavLink to="/dashboard/deliveryMan">
-              <FaWalking className="md:w-7 md:h-10"></FaWalking>Add New Task
+            <NavLink to="/dashboard/addTask">
+              <FaClipboard className="md:w-7 md:h-10"></FaClipboard>Add New Task
+            </NavLink>
+          </li>
+          <li className="text-black">
+            <NavLink to="/">
+              <FaHome className="md:w-7 md:h-10 text-red-500"></FaHome>Home
             </NavLink>
           </li>
         </ul>
       </div>
-      <div className="flex-1 p-10 bg-cover bg-opacity-80">
+      <div>
+        <div className="divider divider-info"></div>
         <Outlet></Outlet>
       </div>
     </div>
