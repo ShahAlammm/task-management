@@ -1,34 +1,38 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../hook/useAuth";
-import Swal from "sweetalert2";
 import useAxiosPublic from "../hook/useAxiosPublic";
+import Swal from "sweetalert2";
+import { useLoaderData } from "react-router-dom";
 
+const UpdateTask = () => {
+  const items = useLoaderData();
+  console.log(items);
 
-const AddTask = () => {
   const axiosPublic = useAxiosPublic();
-
   const { user } = useAuth();
-  const { handleSubmit, register, reset } = useForm();
-  const [currentDate] = useState(new Date().toISOString().split("T")[0]);
+  const { handleSubmit, setValue, register, reset } = useForm();
 
   const onSubmit = async (data) => {
     data.status = "toDo";
-    data.AddedDate = currentDate;
+    const updateTask = {
+      taskTitle: data.taskTitle,
+      deadlineDate: data.deadlineDate,
+      taskDetails: data.taskDetails,
+      status: data.status,
+    };
 
-    console.log("Form submitted:", data);
-
-    const res = await axiosPublic.post("/tasks", data);
-
-    if (res.data.acknowledged === true) {
+    const res = await axiosPublic.patch(`/tasks/${items._id}`, updateTask);
+    console.log(res.data);
+    if (res.data.modifiedCount > 0) {
+      // show success
       Swal.fire({
         position: "top-end",
         icon: "success",
-        title: "Task added successfully",
+        title: `Parcel is updated`,
         showConfirmButton: false,
         timer: 1500,
       });
-      reset();
+      reset("");
     }
   };
 
@@ -62,7 +66,6 @@ const AddTask = () => {
             />
           </div>
         </div>
-
         <div className="lg:flex gap-10">
           <div className="form-control lg:w-1/2">
             <label className="label">
@@ -73,7 +76,8 @@ const AddTask = () => {
             <input
               {...register("taskTitle")}
               className="input input-bordered"
-              placeholder="Task Title"
+              defaultValue={items.taskTitle}
+              name="taskTitle"
             />
           </div>
 
@@ -87,7 +91,8 @@ const AddTask = () => {
               type="date"
               {...register("deadlineDate")}
               className="input input-bordered"
-              placeholder="Details"
+              defaultValue={items.deadlineDate}
+              name="deadlineDate"
             />
           </div>
         </div>
@@ -101,15 +106,17 @@ const AddTask = () => {
           <textarea
             {...register("taskDetails")}
             className="input input-bordered h-36"
+            defaultValue={items.taskDetails}
+            name="taskDetails"
           />
         </div>
 
         <button type="submit" className="btn btn-accent uppercase mt-10">
-          Submit
+          Update
         </button>
       </form>
     </div>
   );
 };
 
-export default AddTask;
+export default UpdateTask;

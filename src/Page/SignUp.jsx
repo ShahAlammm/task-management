@@ -19,8 +19,7 @@ const SignUp = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    createUser(data.email, data.password)
-    .then(() => {
+    createUser(data.email, data.password).then(() => {
       updateUserProfile(data.name, data.photoURL)
         .then(() => {
           const userInfo = {
@@ -28,7 +27,7 @@ const SignUp = () => {
             email: data.email,
             image: data.photoURL,
           };
-          axiosPublic.post("/users", userInfo).then((res) => {
+          axiosPublic.post("/newUser", userInfo).then((res) => {
             if (res.data.insertedId) {
               reset();
               Swal.fire({

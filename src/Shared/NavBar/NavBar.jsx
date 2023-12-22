@@ -75,6 +75,21 @@ const NavBar = () => {
           Blog
         </NavLink>
       </li>
+      {user ? (
+        <li>
+          <NavLink
+            to="/dashboard"
+            className={({ isActive, isPending }) =>
+              isPending ? "pending" : isActive ? "bg-[#26DEBE]" : "text-red-500"
+
+            }
+          >
+            Dashboard
+          </NavLink>
+        </li>
+      ) : (
+        ""
+      )}
     </>
   );
   return (
@@ -91,11 +106,13 @@ const NavBar = () => {
         <div className="navbar-start">
           <div className="flex justify-center items-center">
             <button className="w-20 justify-center items-center">
-              <span>{/* <Lottie animationData={logo} ></Lottie> */}</span>
+              <span>
+                <img src="https://i.ibb.co/k9RSFgH/logof.png" alt="logo" />
+              </span>
             </button>
             <p className="font-serif font-semibold italic text-xl">
               <span className="bg-gradient-to-r from-purple-500 via-red-500 to-red-500 text-transparent bg-clip-text">
-                Delivery Express
+                TodoIts
               </span>
             </p>
           </div>
@@ -125,9 +142,7 @@ const NavBar = () => {
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 font-bold">
-            {navLink}
-          </ul>
+          <ul className="menu menu-horizontal px-1 font-bold text-md">{navLink}</ul>
         </div>
         <div className="navbar-end">
           <details className="dropdown">

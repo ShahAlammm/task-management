@@ -3,17 +3,27 @@ import useAuth from "./useAuth";
 import useAxiosPublic from "./useAxiosPublic";
 
 const useCart = () => {
-    const axiosPublic = useAxiosPublic();
-    const { user} = useAuth();
-    const { refetch, data: task = [] } = useQuery({
-        queryKey: ['tasks', user?.email],
-        queryFn: async() => {
-            const res = await axiosPublic.get(`/tasks?email=${user.email}`);
-            return res.data;
-        }
-    })
+  const { user } = useAuth();
+  const axiosPublic = useAxiosPublic();
+  const {
+    refetch,
+    data: task = [],
+    error,
+  } = useQuery({
+    queryKey: ["tasks", user?.email],
+    queryFn: async () => {
+      try {
+        const res = await axiosPublic.get(`/tasks?email=${user.email}`);
 
-    return [task, refetch]
+        return res.data;
+      } catch (error) {
+        console.error("Error fetching tasks:", error);
+        throw error; // Rethrow the error to let React Query handle it
+      }
+    },
+  });
+
+  return [task, refetch];
 };
 
 export default useCart;

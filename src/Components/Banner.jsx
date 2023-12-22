@@ -2,6 +2,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 import img from "../assets/image/banner-task.jpg";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   useEffect(() => {
@@ -42,7 +43,7 @@ const Banner = () => {
                     data-aos-delay="1000"
                     className="text-5xl lg:text-7xl font-semibold text-sky-500 font-serif"
                   >
-                   Manage Your Task Here
+                    Manage Your Task Here
                   </h1>
                   <p data-aos="fade-up" data-aos-duration="1700">
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab
@@ -51,9 +52,11 @@ const Banner = () => {
                     provident atque qui dolorem magni hic.
                   </p>
                   <div className="flex justify-end ">
-                  <button className="btn btn-accent font-semibold">
-                    Let's Explore
-                  </button>
+                    <Link to={'/dashboard'}>
+                      <button className="btn btn-accent font-semibold">
+                        Let's Explore
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -62,8 +65,7 @@ const Banner = () => {
                   data-aos="fade-up"
                   data-aos-duration="2000"
                   className="col-span-4"
-                >
-                </div>
+                ></div>
               </div>
             </div>
           </div>

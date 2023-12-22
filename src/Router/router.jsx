@@ -8,6 +8,8 @@ import Error from "../Page/Error";
 import Profile from "../Dashboard/Profile";
 import AllTask from "../Dashboard/AllTask";
 import AddTask from "../Dashboard/AddTask";
+import PrivateRouts from "../Context/PrivateRouts";
+import UpdateTask from "../Dashboard/UpdateTask";
 
 const router = createBrowserRouter([
   {
@@ -31,7 +33,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <PrivateRouts>
+        <Dashboard />
+      </PrivateRouts>
+    ),
     children: [
       {
         path: "profile",
@@ -44,6 +50,12 @@ const router = createBrowserRouter([
       {
         path: "addTask",
         element: <AddTask />,
+      },
+      {
+        path: "update/:id",
+        element: <UpdateTask />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/tasks/${params.id}`),
       },
     ],
   },

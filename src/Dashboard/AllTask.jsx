@@ -2,7 +2,8 @@ import Cart from "../Components/Cart";
 import useCart from "../hook/useCart";
 
 const AllTask = () => {
-  const [tasks] = useCart([]);
+  const [tasks, refetch] = useCart([]);
+
 
   // Function to format the deadlineDate
   const formatDeadlineDate = (deadlineDate) => {
@@ -40,13 +41,15 @@ const AllTask = () => {
           To Do
         </h3>
         <div className="divider divider-neutral" />
-        <div className="grid gap-y-2 justify-center items-center">
+        <div className="grid gap-y-2 justify-center items-center px-2">
           {todoTasks.map((task) => (
             <Cart
               key={task._id}
               taskTitle={task.taskTitle}
               deadlineDate={task.deadlineDate}
               taskDetails={task.taskDetails}
+              id={task._id}
+              refetch={refetch}
             />
           ))}
         </div>
@@ -56,14 +59,16 @@ const AllTask = () => {
           Working
         </h3>
         <div className="divider divider-neutral" />
-        <div className="grid gap-y-2 justify-center items-center">
+        <div className="grid gap-y-2 justify-center items-center px-2">
           {workingTasks.map((task) => (
             <Cart
               key={task._id}
               taskTitle={task.taskTitle}
               deadlineDate={task.deadlineDate}
               taskDetails={task.taskDetails}
+              id={task._id}
             />
+
           ))}
         </div>
       </div>
@@ -72,13 +77,14 @@ const AllTask = () => {
           Task Done
         </h3>
         <div className="divider divider-neutral" />
-        <div className="grid gap-y-2 justify-center items-center">
+        <div className="grid gap-y-2 justify-center items-center px-2">
           {doneTasks.map((task) => (
             <Cart
               key={task._id}
               taskTitle={task.taskTitle}
               deadlineDate={task.deadlineDate}
               taskDetails={task.taskDetails}
+              id={task._id}
             />
           ))}
         </div>

@@ -12,13 +12,14 @@ const SectionTitle = ({ SectionTitle }) => {
     });
     AOS.refresh();
   }, []);
+
   return (
     <div className="container m-auto my-16 md:my-24">
       <div className="divider divider-accent font-bold w-1/3 m-auto"></div>
       <div className="divider divider-accent font-bold w-2/3 m-auto"></div>
       <div
         data-aos="fade-up"
-        data-aos-duration="2000"
+        data-aos-duration="1500"
         className="divider divider-accent font-bold uppercase text-4xl"
       >
         {SectionTitle}
