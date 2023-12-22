@@ -12,10 +12,11 @@ const AddTask = () => {
 
   const onSubmit = async (data) => {
     data.status = "toDo";
-    data.bookingDate = currentDate;
+    data.AddedDate = currentDate;
 
     console.log("Form submitted:", data);
-    const res = await axiosPublic.post("/bookings", data);
+    
+    const res = await axiosPublic.post("/tasks", data);
 
     if (res.data.acknowledged === true) {
       Swal.fire({

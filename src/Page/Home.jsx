@@ -1,10 +1,13 @@
 import Banner from "../Components/Banner";
+import UsersCategory from "../Components/UsersCategory";
+import Footer from "../Shared/Footer/Footer";
 
 const Home = () => {
   return (
     <div>
       <Banner/>
-      <div className="h-screen"></div>
+      <UsersCategory/>
+      <Footer/>
     </div>
   );
 };
